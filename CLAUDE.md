@@ -5,6 +5,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Project Overview
 
 This is a **Turborepo monorepo** with a full-stack TypeScript application consisting of:
+
 - **Backend**: NestJS API server with tRPC integration (port 3000)
 - **Frontend**: Next.js 15 with App Router and React 19 (port 3001)
 - **Shared packages**: tRPC router definitions, ESLint configs, TypeScript configs
@@ -37,6 +38,7 @@ The project uses a **shared tRPC router pattern** with automatic schema generati
 ### Module Structure
 
 **Backend** follows NestJS module pattern:
+
 - Feature modules in `apps/backend/src/<feature>/`:
   - `<feature>.module.ts` - Module definition
   - `<feature>.router.ts` - tRPC router implementation with decorators
@@ -44,6 +46,7 @@ The project uses a **shared tRPC router pattern** with automatic schema generati
   - `<feature>.schema.ts` - Zod schemas and TypeScript types
 
 **Frontend** follows Next.js App Router structure:
+
 - `app/` directory with route-based file structure
 - `providers/` for React context providers
 - `trpc/` for tRPC client setup
@@ -102,6 +105,7 @@ pnpm test:watch     # Watch mode
 **Critical workflow** to maintain type safety:
 
 1. **Define in shared router** (`packages/trpc/src/server/server.ts`):
+
    ```typescript
    myNewRoute: publicProcedure
      .input(z.object({ ... }))
@@ -115,9 +119,11 @@ pnpm test:watch     # Watch mode
    - Register module in `app.module.ts`
 
 3. **Build backend** to trigger schema auto-generation:
+
    ```bash
    pnpm build --filter=backend
    ```
+
    This replaces placeholders with actual implementations
 
 4. **Use in frontend**:
