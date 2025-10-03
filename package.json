@@ -5,7 +5,9 @@
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "format": "pnpm format:root && pnpm format:backend",
+    "format:root": "prettier --write \"**/*.{ts,tsx,md}\" --ignore-path apps/backend",
+    "format:backend": "pnpm --filter=backend format",
     "check-types": "turbo run check-types"
   },
   "devDependencies": {
